@@ -1,0 +1,18 @@
+label {
+  font-weight: 500;
+}
+.ctabutton {
+  padding: 9px 30px;
+  background-color: #005efd;
+  box-shadow: 0 0 20px 20px rgba(0, 0, 0, 0.05);
+  color: #fff;
+  border: 0;
+  border-radius: 6px;
+  margin-top: 20px;
+  transition: all 0.25s linear;
+  font-size: 14px;
+  font-weight: 500;
+}
+.ctabutton:hover:enabled {
+  background-color: #fc9f25;
+}

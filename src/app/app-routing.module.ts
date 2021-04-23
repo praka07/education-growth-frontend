@@ -14,6 +14,9 @@ const routes: Routes = [{
 {
   path: '', redirectTo: '/home', pathMatch: 'full'
 },
+  { path: 'globaladmin', loadChildren: () => import('./components/globaladmin/globaladmin.module').then(m => m.GlobaladminModule) },
+  { path: 'staff', loadChildren: () => import('./components/staff/staff.module').then(m => m.StaffModule) },
+  { path: 'student', loadChildren: () => import('./components/student/student.module').then(m => m.StudentModule) },
 {
   path: '**', component: PageNotFoundComponent
 }];

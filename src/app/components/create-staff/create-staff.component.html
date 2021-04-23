@@ -1,0 +1,49 @@
+<div class="container-fluid">
+  <form #createUser="ngForm" autocomplete="off" (ngSubmit)="createStaff()">
+    <div class="row">
+      <div class="col-md-5">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" name="firstname" placeholder="Enter First Name" class="form-control" maxlength="15"
+            (ngModel)="staff.firstName" #firstname="ngModel" required>
+          <span class="help-block text-danger" *ngIf="firstname.errors?.required && firstname.touched">
+            First Name is required
+          </span>
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" name="lastname" placeholder="Enter Last Name" class="form-control" maxlength="15"
+            (ngModel)="staff.lastName" #lastname="ngModel" required>
+          <span class="help-block text-danger" *ngIf="lastname.errors?.required && lastname.touched">
+            Last Name is required
+          </span>
+        </div>
+        <div class="form-group">
+          <label for="emailId">Email</label>
+          <input type="text" class="form-control" (ngModel)="staff.userName" placeholder="Enter Email"
+            pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="emailId" #emailId="ngModel" required>
+          <div *ngIf="emailId.touched">
+            <p class="help-block text-danger" *ngIf="emailId.errors?.required">Email is a required</p>
+            <p class="help-block text-danger" *ngIf="emailId.errors?.pattern">This is not a valid Email</p>
+          </div>
+
+        </div>
+        <div class="form-group">
+          <label>Contact Number</label>
+          <input type="text" name="contactnumber" placeholder="Enter Contact Number" class="form-control" maxlength="15"
+            (ngModel)="staff.contactNumber" #contactnumber="ngModel" required>
+          <span class="help-block text-danger" *ngIf="contactnumber.errors?.required && contactnumber.touched">
+            Contact Number is required
+          </span>
+        </div>
+        <button type="submit" [disabled]="createUser.invalid"
+          class="btn btn-primary ctabutton float-right">Create</button>
+      </div>
+    </div>
+
+
+
+
+
+  </form>
+</div>

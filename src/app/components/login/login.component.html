@@ -1,18 +1,4 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>Students Growth</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap" rel="stylesheet">
-
-  </head>
-  <body>
-
-    <section class="fullscreen">
+  <section class="fullscreen">
     <div class="loginpanel">
       <div class="logincontent">
 
@@ -20,28 +6,31 @@
       </div>
       <div class="login">
 
-		<img src="../../../assets/images/logo.png" width="200" class="img-fluid" />
+        <img src="../../../assets/images/logo.png" width="200" class="img-fluid" />
 
 
-        <form>
+        <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" autocomplete="off">
           <div class="form-group">
             <label for="">Username</label>
-            <input type="text" name="" id="" class="form-control" placeholder="Enter Username" aria-describedby="helpId">
+            <input type="text" name="username" id="" class="form-control" placeholder="Enter Username"
+              (ngModel)="emailId" aria-describedby="helpId" required #emailId="ngModel">
+            <span class=" text-danger" *ngIf="emailId.errors?.required && emailId.touched">
+              UserName is required
+            </span>
 
           </div>
           <div class="form-group">
             <label for="">Password</label>
-            <input type="text" name="" id="" class="form-control" placeholder="Enter Password" aria-describedby="helpId">
-
+            <input type="password" name="password" id="" class="form-control" placeholder="Enter Password"
+              (ngModel)="password" aria-describedby="helpId" required #password="ngModel">
+            <span class="text-danger" *ngIf="password.errors?.required && password.touched">Password is required</span>
           </div>
           <div class="form-group m-0">
-            <button class="ctabutton" type="submit">Sign In</button>
+            <button class="btn btn-primary ctabutton" [disabled]="!loginForm.valid" type="submit">Sign In</button>
           </div>
 
         </form>
       </div>
     </div>
-   </section>
+  </section>
 
-  </body>
-</html>

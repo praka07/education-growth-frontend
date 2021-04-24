@@ -7,7 +7,7 @@ export class User {
   createdDate: Date;
   createdBy: number;
   role: number;
-  contactNumber:string;
-  address:string;
-  active:boolean;
+  contactNumber: string;
+  active: boolean;
+  rollnumber: string;
 }

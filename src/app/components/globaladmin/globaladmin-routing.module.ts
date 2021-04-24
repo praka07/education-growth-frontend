@@ -16,6 +16,9 @@ const routes: Routes = [{
     path: 'changepassword', component: ChangePasswordComponent
   },
   {
+    path: 'liststaff', component: ViewUsersComponent
+  },
+  {
     path: 'createstaff', component: CreateStaffComponent
   },
   {

@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
       this.service.holdUserDetails(this.userDetails); // store logged in user details
       if (this.userDetails.role == 1) {
         console.log("== load Global Admin page==");
+
         this.router.navigate(['globaladmin']);
 
       } else if (this.userDetails.role == 2 ) {

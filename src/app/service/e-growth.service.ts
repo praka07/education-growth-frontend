@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Staff } from '../models/staff';
+import { Batchdetail } from '../models/batchdetail';
 import { User } from '../models/user';
 
 @Injectable({
@@ -11,7 +11,7 @@ import { User } from '../models/user';
 export class EGrowthService {
 
 
-  constructor(private http:HttpClient,private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) { }
   loggedInUserDetail = new User();
   backendUrl: string = 'http://localhost:2020/';
 
@@ -33,14 +33,30 @@ export class EGrowthService {
 
   }
   /**
-   * staff releated operation start
+   * user releated operation start
    */
 
-   registerStaff(staffDetail: Staff) {
-    return this.http.post(`${this.backendUrl}registeruser`, staffDetail);
+  createUser(staffDetail: User) {
+    return this.http.post(`${this.backendUrl}createuser`, staffDetail);
+
+  }
+  updateUserDetail(object: User) {
+    return this.http.put(`${this.backendUrl}updateuserdetail`, object);
 
   }
   /**
-   * staff releated operation start
+   * user releated operation start
    */
+
+  getAllUsers = (): Observable<User[]> => {
+    let createdBy = this.getLoggedInuser().autoId;
+    return this.http.get<User[]>(`${this.backendUrl}getalluser/${createdBy}`);
+  }
+  createBatch = (requestPayload: any) => {
+    return this.http.post(`${this.backendUrl}createbatch`, requestPayload);
+
+  }
+  getBatch =():Observable<Batchdetail[]> =>{
+    return this.http.get<Batchdetail[]>(`${this.backendUrl}getbatch`);
+  }
 }

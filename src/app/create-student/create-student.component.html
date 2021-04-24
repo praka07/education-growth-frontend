@@ -1,12 +1,12 @@
 <div class="container-fluid">
-  <h4 class="text-warning">Create Staff</h4>
-  <form #createUser="ngForm" autocomplete="off" (ngSubmit)="createStaff()">
+  <h4 class="text-warning">Create Student</h4>
+  <form #studentForm="ngForm" autocomplete="off" (ngSubmit)="createStudent()">
     <div class="row">
       <div class="col-md-5">
         <div class="form-group">
           <label>First Name</label>
           <input type="text" name="firstname" placeholder="Enter First Name" class="form-control" maxlength="15"
-            [(ngModel)]="staff.firstName" #firstname="ngModel" required>
+            [(ngModel)]="studentInformation.firstName" #firstname="ngModel" required>
           <span class="help-block text-danger" *ngIf="firstname.errors?.required && firstname.touched">
             First Name is required
           </span>
@@ -14,31 +14,44 @@
         <div class="form-group">
           <label>Last Name</label>
           <input type="text" name="lastname" placeholder="Enter Last Name" class="form-control" maxlength="15"
-            [(ngModel)]="staff.lastName" #lastname="ngModel" required>
+            [(ngModel)]="studentInformation.lastName" #lastname="ngModel" required>
           <span class="help-block text-danger" *ngIf="lastname.errors?.required && lastname.touched">
             Last Name is required
           </span>
         </div>
         <div class="form-group">
           <label for="emailId">Email</label>
-          <input type="text" class="form-control" [(ngModel)]="staff.emailId" placeholder="Enter Email"
+          <input type="text" class="form-control" [(ngModel)]="studentInformation.emailId" placeholder="Enter Email"
             pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="emailId" #emailId="ngModel" required>
           <div *ngIf="emailId.touched">
             <p class="help-block text-danger" *ngIf="emailId.errors?.required">Email is a required</p>
             <p class="help-block text-danger" *ngIf="emailId.errors?.pattern">This is not a valid Email</p>
           </div>
-
         </div>
+      </div>
+      <div class="col-md-5">
         <div class="form-group">
           <label>Contact Number</label>
           <input type="text" name="contactnumber" placeholder="Enter Contact Number" class="form-control" maxlength="15"
-            [(ngModel)]="staff.contactNumber" #contactnumber="ngModel" required>
+            [(ngModel)]="studentInformation.contactNumber" #contactnumber="ngModel" required>
           <span class="help-block text-danger" *ngIf="contactnumber.errors?.required && contactnumber.touched">
             Contact Number is required
           </span>
         </div>
-        <button type="submit" [disabled]="createUser.invalid"
+        <div class="form-group">
+          <label>Batch</label>
+          <select class="form-control" id="batch" [(ngModel)]="batchValue" name="batch" #batch="ngModel" required>
+            <option *ngFor="let batch of batches" [value]="batch.batchId">
+              {{batch.academicYear}}
+            </option>
+          </select>
+          <span class="help-block text-danger" *ngIf="batch.errors?.required && batch.touched">
+            batch is required
+          </span>
+        </div>
+        <button type="submit" [disabled]="studentForm.invalid"
           class="btn btn-primary ctabutton float-right">Create</button>
+
       </div>
     </div>
 

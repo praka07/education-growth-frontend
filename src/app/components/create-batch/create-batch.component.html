@@ -1,0 +1,30 @@
+<div class="container-fluid">
+  <h4 class="text-warning">Create Batch</h4>
+  <form #batchForm="ngForm" autocomplete="off" (ngSubmit)="createBatch()">
+    <div class="row">
+      <div class="col-md-5">
+        <div class="form-group">
+          <label>Start Year</label>
+          <input type="text" name="startyear" placeholder="Enter Start Year" class="form-control" maxlength="4" minlength="4"
+            [(ngModel)]="startYear" #startyear="ngModel" required>
+          <span class="help-block text-danger" *ngIf="startyear.errors?.required && startyear.touched">
+            Start Year is required
+          </span>
+        </div>
+        <div class="form-group">
+          <label>End Year</label>
+          <input type="text" name="endyear" placeholder="Enter End Year" class="form-control" maxlength="4" minlength="4"
+            [(ngModel)]="endYear" #endyear="ngModel" required>
+          <span class="help-block text-danger" *ngIf="endyear.errors?.required && endyear.touched">
+            End Year is required
+          </span>
+        </div>
+        <button type="submit" [disabled]="batchForm.invalid"
+        class="btn btn-primary ctabutton float-right">Create Batch</button>
+      </div>
+
+    </div>
+
+  </form>
+
+</div>

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Batchdetail } from '../models/batchdetail';
+import { Electivedetail } from '../models/electivedetail';
 import { User } from '../models/user';
 
 @Injectable({
@@ -56,7 +57,14 @@ export class EGrowthService {
     return this.http.post(`${this.backendUrl}createbatch`, requestPayload);
 
   }
-  getBatch =():Observable<Batchdetail[]> =>{
+  getBatch = (): Observable<Batchdetail[]> => {
     return this.http.get<Batchdetail[]>(`${this.backendUrl}getbatch`);
+  }
+
+  getElective = (): Observable<Electivedetail[]> => {
+    return this.http.get<Electivedetail[]>(`${this.backendUrl}getelective`);
+  }
+  createElectiveSubject = (requestPayload: any) => {
+    return this.http.post(`${this.backendUrl}createelectivesubject`, requestPayload);
   }
 }

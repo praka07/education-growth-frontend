@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/user';
 import { EGrowthService } from 'src/app/service/e-growth.service';
@@ -13,11 +14,18 @@ export class ViewUsersComponent implements OnInit {
   userList: User[];
   editUserDetailModal: boolean = false;
   editUserObject: User;
+  enableCreateStudentButtonFlag: boolean;
 
 
-  constructor(private service:EGrowthService,private toastr:ToastrService) { }
+  constructor(private service: EGrowthService, private toastr: ToastrService, private router:Router) { }
 
   ngOnInit(): void {
+    if (this.service.getLoggedInuser().role == 2) {
+      this.enableCreateStudentButtonFlag = true;
+    } else {
+      this.enableCreateStudentButtonFlag = false;
+    }
+console.log('--- flag -- ',this.enableCreateStudentButtonFlag);
     this.service.getAllUsers().subscribe(res => {
       this.userList = res;
       console.log('-- userList ---', this.userList);
@@ -41,8 +49,8 @@ export class ViewUsersComponent implements OnInit {
 
   }
 
-  hideConfirmationEditModal(){
-    this.editUserDetailModal=false;
+  hideConfirmationEditModal() {
+    this.editUserDetailModal = false;
 
   }
 
@@ -56,5 +64,10 @@ export class ViewUsersComponent implements OnInit {
 
       })
     }
+  }
+
+  createStudent(){
+    this.router.navigate(['/staff/createstudent']);
+
   }
 }

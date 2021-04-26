@@ -1,0 +1,36 @@
+<div class="container-fluid">
+  <h4 class="text-warning">Create Elective</h4>
+  <form #electiveForm="ngForm" autocomplete="off" (ngSubmit)="createElectiveFields()">
+    <div class="row">
+      <div class="col-md-5">
+        <div class="form-group">
+          <label>Elective Name</label>
+          <input type="text" name="electivename" placeholder="Enter Elective Name" class="form-control" maxlength="100"
+            [(ngModel)]="createElective.electiveName" #electivename="ngModel" required>
+          <span class="help-block text-danger" *ngIf="electivename.errors?.required && electivename.touched">
+            Elective Name is required
+          </span>
+        </div>
+
+        <div class="form-group">
+          <select class="form-control" [(ngModel)]="createElective.electiveType" name="electiveType"
+            #electiveType="ngModel" required>
+            <option value=''>Select Elective Type</option>
+            <option *ngFor="let elective of electiveTypes" [value]="elective.id">
+              {{elective.electiveType}}
+            </option>
+          </select>
+          <span class="text-danger" *ngIf="electiveType.errors?.required && electiveType.touched">
+            Elective Type is required
+          </span>
+        </div>
+        <button type="submit" [disabled]="electiveForm.invalid"
+          class="btn btn-primary ctabutton float-right">Create</button>
+
+
+
+      </div>
+    </div>
+
+  </form>
+</div>

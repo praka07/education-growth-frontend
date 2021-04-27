@@ -4,12 +4,15 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Batchdetail } from '../models/batchdetail';
 import { Electivedetail } from '../models/electivedetail';
+import { Subjectdetail } from '../models/subjectdetail';
 import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EGrowthService {
+
+
 
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -66,5 +69,16 @@ export class EGrowthService {
   }
   createElectiveSubject = (requestPayload: any) => {
     return this.http.post(`${this.backendUrl}createelectivesubject`, requestPayload);
+  }
+
+  getLstSubject(): Observable<Subjectdetail[]> {
+    return this.http.get<Subjectdetail[]>(`${this.backendUrl}listsubject`);
+  }
+  updateSubjectDetail(requestPayload: any) {
+    return this.http.put(`${this.backendUrl}editsubject`, requestPayload);
+
+  }
+  createSubject(request:any){
+    return this.http.post(`${this.backendUrl}createsubject`,request)
   }
 }

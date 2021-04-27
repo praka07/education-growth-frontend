@@ -1,1 +1,65 @@
-<p>home-subject works!</p>
+<div class="p-3 mb-5 bg-white">
+
+
+  <div class="row justify-content-end m-0">
+    <div class="col-md-12 mt-3 p-0 mscroll">
+      <div>
+        <button class="btn btn-success float-right mb-2" (click)="createSubject()">Create Subject</button>
+      </div>
+      <table class="table table-hover ">
+        <thead class="thead-dark">
+          <tr>
+            <th>Subject Code</th>
+            <th>Subject Name</th>
+            <th>Subject Type</th>
+            <th>Semester</th>
+            <th>Credit</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let subject of subjectDetails">
+            <td>{{subject.subjectCode}}</td>
+            <td>{{subject.subjectName}}</td>
+            <td>{{subject.subjectType}}</td>
+            <td>{{subject.semester}}</td>
+            <td>{{subject.credit}}</td>
+            <td>{{subject.active?'Yes':'No'}}</td>
+            <td (click)="openEditModal(subject)">
+              <i class="fa fa-pencil"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for edit customer open-->
+
+<div class="modal" id="editSubjectDetailModal" [style.display]="editSubjectDetailModal ? 'block' : 'none'">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title text-center text-dark">Change Subject Status</h4>
+        <button type="button" class="close" data-dismiss="modal" (click)="hideConfirmationEditModal()">&times;</button>
+      </div>
+      <!-- Modal body -->
+
+      <div class="modal-body">
+        <div *ngIf='editSubjectObject'>
+          <app-edit-subject [updateSubjectDetail]="editSubjectObject" (closePopup)="closeModal($event)">
+          </app-edit-subject>
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Modal for edit customer close-->

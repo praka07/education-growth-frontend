@@ -38,7 +38,7 @@ export class CreateElectiveComponent implements OnInit {
     this.service.createElectiveSubject(requestPayload).subscribe(res => {
 
       this.toastr.success('created elective subject successfully!!');
-      this.router.navigate(['/staf/homesubject']);
+      this.router.navigate(['/staff/homesubject']);
 
     }, error => {
       this.toastr.error('everything is broken ', 'Major Error');

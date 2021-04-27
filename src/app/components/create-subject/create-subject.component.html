@@ -1,1 +1,62 @@
-<p>create-subject works!</p>
+<div class="container-fluid">
+  <h4 class="text-warning">Create Subject</h4>
+  <form #subjectForm="ngForm" autocomplete="off" (ngSubmit)="createSubject()">
+    <div class="row">
+      <div class="col-md-5">
+        <div class="form-group">
+          <label>Subject Code</label>
+          <input type="text" name="subjectcode" placeholder="Enter Subject Code" class="form-control" maxlength="5"
+            [(ngModel)]="subjectObject.subjectCode" #subjectcode="ngModel" required>
+          <span class="help-block text-danger" *ngIf="subjectcode.errors?.required && subjectcode.touched">
+            Subject code is required
+          </span>
+        </div>
+        <div class="form-group">
+          <label>Subject Name</label>
+          <input type="text" name="subjectname" placeholder="Enter Subject Name" class="form-control" maxlength="100"
+            [(ngModel)]="subjectObject.subjectName" #subjectname="ngModel" required>
+          <span class="help-block text-danger" *ngIf="subjectname.errors?.required && subjectname.touched">
+            Subject Name is required
+          </span>
+        </div>
+        <div class="form-group">
+          <label>Credit</label>
+          <input type="text" name="creditValue" placeholder="Enter Credit Value" class="form-control" maxlength="4"
+            [(ngModel)]="subjectObject.credit" #creditValue="ngModel" required>
+          <span class="help-block text-danger" *ngIf="creditValue.errors?.required && creditValue.touched">
+            Credit Value is required
+          </span>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="form-group">
+          <select class="form-control" [(ngModel)]="subjectObject.subjectType" name="subjectType" #subjectType="ngModel"
+            required>
+            <option value=''>Select Subject Type</option>
+            <option *ngFor="let subject of subjectTypes" [value]="subject.id">
+              {{subject.subjectType}}
+            </option>
+          </select>
+          <span class="text-danger" *ngIf="subjectType.errors?.required && subjectType.touched">
+            Elective Type is required
+          </span>
+        </div>
+        <div class="form-group">
+          <select class="form-control" [(ngModel)]="subjectObject.semester" name="semesterType" #semesterType="ngModel"
+            required>
+            <option value=''>Select Semester Type</option>
+            <option *ngFor="let sem of semesters" [value]="sem.id">
+              {{sem.semester}}
+            </option>
+          </select>
+          <span class="text-danger" *ngIf="semesterType.errors?.required && semesterType.touched">
+            Semester Type is required
+          </span>
+        </div>
+        <button type="submit" [disabled]="subjectForm.invalid"
+          class="btn btn-primary ctabutton float-right">Create</button>
+      </div>
+    </div>
+
+  </form>
+</div>

@@ -1,0 +1,32 @@
+<div class="container-fluid">
+  <form #entryForm="ngForm" autocomplete="off" (ngSubmit)="getMaryEntryList()">
+    <div class="row">
+      <div class="col-md-5">
+
+        <div class="form-group">
+          <ng2-completer [inputClass]="'form-control'" [(ngModel)]="searchStr" [datasource]="dataService"
+            [placeholder]="'Type Roll Number'" name="rollNumber" #rollNumber="ngModel" [minSearchLength]="0">
+          </ng2-completer>
+        </div>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5">
+        <div class="form-group">
+          <select class="form-control"  [(ngModel)]="subjectObject.semester" name="semesterType"
+            #semesterType="ngModel"  required>
+            <option value=''>Select Semester</option>
+            <option *ngFor="let sem of semesters" [value]="sem.id">
+              {{sem.semester}}
+            </option>
+          </select>
+          <span class="text-danger" *ngIf="semesterType.errors?.required && semesterType.touched">
+            Semester is required
+          </span>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>

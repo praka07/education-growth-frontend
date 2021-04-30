@@ -9,5 +9,6 @@ export class User {
   role: number;
   contactNumber: string;
   active: boolean;
-  rollnumber: string;
+  rollNumber: string;
+  batch:number;
 }

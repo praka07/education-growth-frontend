@@ -12,16 +12,21 @@ import { CreateElectiveComponent } from '../create-elective/create-elective.comp
 import { HomeSubjectComponent } from '../home-subject/home-subject.component';
 import { CreateSubjectComponent } from '../create-subject/create-subject.component';
 import { EditSubjectComponent } from '../edit-subject/edit-subject.component';
+import { MarkEntryComponent } from '../mark-entry/mark-entry.component';
+import { SubjectMappingComponent } from '../subject-mapping/subject-mapping.component';
+import { Ng2CompleterModule } from 'ng2-completer';
+import { MaryEntryFilterComponent } from '../mary-entry-filter/mary-entry-filter.component';
 
 
 @NgModule({
-  declarations: [HomeElectiveComponent,StaffComponent,CreateStudentComponent
+  declarations: [HomeElectiveComponent,MaryEntryFilterComponent,StaffComponent,CreateStudentComponent
     ,HomeBatchComponent,CreateBatchComponent,CreateElectiveComponent,
-    HomeSubjectComponent,CreateSubjectComponent,EditSubjectComponent],
+    HomeSubjectComponent,CreateSubjectComponent,EditSubjectComponent,MarkEntryComponent,SubjectMappingComponent],
   imports: [
     CommonModule,
     StaffRoutingModule,
-    UtilityModule
+    UtilityModule,
+    Ng2CompleterModule
   ]
 })
 export class StaffModule { }

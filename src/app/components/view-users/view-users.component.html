@@ -12,10 +12,11 @@
                       <th>First Name</th>
                       <th>Last Name</th>
                       <th>Email</th>
+                      <th *ngIf="enableCreateStudentButtonFlag">Roll Number</th>
                       <th>Contact Number</th>
                       <th>Role</th>
-                      <th>Created Date</th>
                       <th>Active</th>
+                      <th>Action</th>
                       <th>Action</th>
 
                   </tr>
@@ -25,6 +26,7 @@
                       <td>{{userObj.firstName}}</td>
                       <td>{{userObj.lastName}}</td>
                       <td>{{userObj.emailId}}</td>
+                      <td *ngIf="enableCreateStudentButtonFlag">{{userObj.rollNumber}}</td>
                       <td>{{userObj.contactNumber}}</td>
                       <td>{{(userObj.role == 2)?"Staff":"Student"}}</td>
                       <td>{{formateDate(userObj.createdDate)}}</td>

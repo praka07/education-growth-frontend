@@ -7,4 +7,5 @@ export class Subjectdetail {
   credit: number;
   createdBy: number;
   active: boolean;
+  batch:number;
 }

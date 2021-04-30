@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Batchdetail } from 'src/app/models/batchdetail';
 import { Subjectdetail } from 'src/app/models/subjectdetail';
 import { EGrowthService } from 'src/app/service/e-growth.service';
 
@@ -12,6 +13,8 @@ import { EGrowthService } from 'src/app/service/e-growth.service';
 export class CreateSubjectComponent implements OnInit {
 
   subjectObject = new Subjectdetail();
+  batches: Batchdetail[];
+  batchValue: number;
 
 
   semesters = [{
@@ -75,24 +78,36 @@ export class CreateSubjectComponent implements OnInit {
 
   }
   ];
-  constructor(private service: EGrowthService, private toastr: ToastrService, private touter: Router) { }
+  constructor(private service: EGrowthService, private toastr: ToastrService, private router: Router) { }
 
 
   ngOnInit(): void {
     this.subjectObject.subjectType = ''; // make drop down proper
     this.subjectObject.semester = '';
+    this.service.getBatch().subscribe(res => {
+      this.batches = res;
+      console.log('-- available batches --', this.batches);
+      this.batchValue = this.batches[0].batchId;
+
+    }, error => {
+      this.toastr.error('everything is broken ', 'Major Error');
+    });
   }
 
   createSubject() {
-    let requestPayload:any={};
-    requestPayload.subjectCode=this.subjectObject.subjectCode;
-    requestPayload.subjectName=this.subjectObject.subjectName;
-    requestPayload.semester= + this.subjectObject.semester;
-    requestPayload.credit=this.subjectObject.credit;
-    requestPayload.createdBy=this.service.getLoggedInuser().autoId;
+    let requestPayload: any = {};
+    requestPayload.subjectCode = this.subjectObject.subjectCode;
+    requestPayload.subjectName = this.subjectObject.subjectName;
+    requestPayload.semester = + this.subjectObject.semester;
+    requestPayload.subjectType= this.subjectObject.subjectType;
+    requestPayload.credit = this.subjectObject.credit;
+    requestPayload.createdBy = this.service.getLoggedInuser().autoId;
+    requestPayload.batch=this.batchValue;
 
-    this.service.createSubject(this.subjectObject).subscribe(responseObj => {
+    this.service.createSubject(requestPayload).subscribe(responseObj => {
       console.log('--- response ---', responseObj);
+      this.toastr.success('Subject created successfully !!');
+      this.router.navigate(['/staff/homesubject']);
 
     }, error => {
       this.toastr.error('everything is broken ', 'Major Error');

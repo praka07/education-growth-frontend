@@ -1,0 +1,63 @@
+<div class="container-fluid">
+  <h4 class="text-warning">Subject Mapping</h4>
+  <form #mappingForm="ngForm" autocomplete="off" (ngSubmit)="go()">
+    <div class="row">
+      <div class="col-md-5">
+        <div class="form-group">
+          <ng2-completer [inputClass]="'form-control'" [(ngModel)]="searchStr" [datasource]="dataService"
+            [placeholder]="'Type Roll Number'" name="rollNumber" #rollNumber="ngModel" [minSearchLength]="0">
+          </ng2-completer>
+        </div>
+        <div class="form-group">
+          <select class="form-control" #semesterSelection [(ngModel)]="subjectObject.semester" name="semesterType"
+            #semesterType="ngModel" (change)="getSubjects(semesterSelection.value)" required>
+            <option value=''>Select Semester</option>
+            <option *ngFor="let sem of semesters" [value]="sem.id">
+              {{sem.semester}}
+            </option>
+          </select>
+          <span class="text-danger" *ngIf="semesterType.errors?.required && semesterType.touched">
+            Semester is required
+          </span>
+        </div>
+        <div class="form-group">
+          <select class="form-control" [(ngModel)]="selectedSubject" name="subject" #subject="ngModel" required>
+            <option value=''>Select subject name</option>
+            <option *ngFor="let subject of subjectDetails" [value]="subject.subjectId">
+              {{subject.subjectName}}
+            </option>
+          </select>
+          <span class="text-danger" *ngIf="subject.errors?.required && subject.touched">
+            Subject Name is required
+          </span>
+        </div>
+        <div class="form-group">
+          <select class="form-control" #mySelect [(ngModel)]="selectedElectiveType" name="electiveType"
+            (change)="selectedType(mySelect.value)" #electiveType="ngModel" required>
+            <option value=''>Select Elective Type</option>
+            <option *ngFor="let elective of electiveTypes" [value]="elective.id">
+              {{elective.electiveType}}
+            </option>
+          </select>
+          <span class="text-danger" *ngIf="electiveType.errors?.required && electiveType.touched">
+            Elective Type is required
+          </span>
+        </div>
+        <div class="form-group">
+          <select class="form-control" [(ngModel)]="selectedElective" name="elective" #elective="ngModel" required>
+            <option value=''>Select Elective</option>
+            <option *ngFor="let ele of electives" [value]="ele.electiveId">
+              {{ele.electiveName}}
+            </option>
+          </select>
+          <span class="text-danger" *ngIf="elective.errors?.required && elective.touched">
+            Elective is required
+          </span>
+        </div>
+
+        <button type="submit" [disabled]="mappingForm.invalid"
+          class="btn btn-primary ctabutton float-right">Save</button>
+      </div>
+    </div>
+  </form>
+</div>

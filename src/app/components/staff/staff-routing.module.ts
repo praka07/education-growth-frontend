@@ -8,6 +8,9 @@ import { HomeBatchComponent } from '../home-batch/home-batch.component';
 import { HomeElectiveComponent } from '../home-elective/home-elective.component';
 import { HomeStudentComponent } from '../home-student/home-student.component';
 import { HomeSubjectComponent } from '../home-subject/home-subject.component';
+import { MarkEntryComponent } from '../mark-entry/mark-entry.component';
+import { MaryEntryFilterComponent } from '../mary-entry-filter/mary-entry-filter.component';
+import { SubjectMappingComponent } from '../subject-mapping/subject-mapping.component';
 import { ViewUsersComponent } from '../view-users/view-users.component';
 
 import { StaffComponent } from './staff.component';
@@ -35,6 +38,15 @@ const routes: Routes = [{
   },
   {
     path: 'createsubject', component: CreateSubjectComponent
+  },
+  {
+    path: 'subjectmapping', component: SubjectMappingComponent
+  },
+  {
+    path: 'markentry', component: MarkEntryComponent
+  },
+  {
+    path: 'markentryfilter', component: MaryEntryFilterComponent
   },
   {
     path: 'homesubject', component: HomeSubjectComponent

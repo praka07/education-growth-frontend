@@ -11,6 +11,9 @@
             Subject code is required
           </span>
         </div>
+
+      </div>
+      <div class="col-md-5">
         <div class="form-group">
           <label>Subject Name</label>
           <input type="text" name="subjectname" placeholder="Enter Subject Name" class="form-control" maxlength="100"
@@ -19,6 +22,11 @@
             Subject Name is required
           </span>
         </div>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5">
         <div class="form-group">
           <label>Credit</label>
           <input type="text" name="creditValue" placeholder="Enter Credit Value" class="form-control" maxlength="4"
@@ -30,6 +38,7 @@
       </div>
       <div class="col-md-5">
         <div class="form-group">
+          <label>Subject Type</label>
           <select class="form-control" [(ngModel)]="subjectObject.subjectType" name="subjectType" #subjectType="ngModel"
             required>
             <option value=''>Select Subject Type</option>
@@ -41,7 +50,13 @@
             Elective Type is required
           </span>
         </div>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5">
         <div class="form-group">
+          <label>Select Semester</label>
           <select class="form-control" [(ngModel)]="subjectObject.semester" name="semesterType" #semesterType="ngModel"
             required>
             <option value=''>Select Semester Type</option>
@@ -53,10 +68,27 @@
             Semester Type is required
           </span>
         </div>
-        <button type="submit" [disabled]="subjectForm.invalid"
-          class="btn btn-primary ctabutton float-right">Create</button>
+      </div>
+      <div class="col-md-5">
+        <div class="form-group">
+          <label>Batch</label>
+          <select class="form-control" id="batch" [(ngModel)]="batchValue" name="batch" #batch="ngModel" required>
+            <option *ngFor="let batch of batches" [value]="batch.batchId">
+              {{batch.academicYear}}
+            </option>
+          </select>
+          <span class="help-block text-danger" *ngIf="batch.errors?.required && batch.touched">
+            batch is required
+          </span>
+        </div>
+
       </div>
     </div>
+<div class="row">
+  <div class="col-md-5 offset-md-5">
+    <button type="submit" [disabled]="subjectForm.invalid" class="btn btn-primary ctabutton float-right">Create</button>
+  </div>
+</div>
 
   </form>
 </div>

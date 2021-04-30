@@ -78,7 +78,23 @@ export class EGrowthService {
     return this.http.put(`${this.backendUrl}editsubject`, requestPayload);
 
   }
-  createSubject(request:any){
-    return this.http.post(`${this.backendUrl}createsubject`,request)
+  createSubject(request: any) {
+    return this.http.post(`${this.backendUrl}createsubject`, request)
+  }
+
+  geteletiveByType(value: string): Observable<Electivedetail[]> {
+    return this.http.get<Electivedetail[]>(`${this.backendUrl}eletive/${value}`)
+  }
+
+  getSubjectDetailsBySemester(semester: number): Observable<Subjectdetail[]> {
+    return this.http.get<Subjectdetail[]>(`${this.backendUrl}getsubject/${+semester}`);
+  }
+
+  subjectMapping(payload:any){
+    return this.http.post(`${this.backendUrl}subjectmapping`,payload);
+  }
+
+  getSubjectsListbyStudent(payload:any){
+    return this.http.post(`${this.backendUrl}subjectslistbystudent`,payload);
   }
 }

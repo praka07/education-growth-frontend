@@ -34,6 +34,7 @@ export class CreateStudentComponent implements OnInit {
   createStudent() {
     console.log('-- student information -', this.studentInformation);
     this.studentInformation.createdBy = this.loggedInUser.autoId;
+    this.studentInformation.batch= this.batchValue;
     this.studentInformation.role = 3;// create student
     this.service.createUser(this.studentInformation).subscribe(response => {
       if ('emailId already registered with another user' === response['message']) {

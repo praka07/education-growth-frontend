@@ -32,7 +32,7 @@ export class CreateBatchComponent implements OnInit {
         this.navigate.navigate(['staff/home']);
 
       },error =>{
-        this.toastr.error('everything is broken ', 'Major Error');
+        this.toastr.error('Something wrong here');
 
       })
      }

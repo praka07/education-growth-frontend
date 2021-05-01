@@ -1,3 +1,37 @@
-<div class="container-fluid">
-  <h1>i am yet to </h1>
+<div class="p-3 mb-5 bg-white">
+  <h3 class="mb-4">Subject Mapping</h3>
+
+  <div class="row justify-content-end m-0">
+    <div class="col-md-12 mt-3 p-0 mscroll">
+
+      <table class="table table-hover ">
+        <thead class="thead-dark">
+          <tr>
+            <th>Subject</th>
+            <th>Credits</th>
+            <th>Internal Mark</th>
+            <th>External Mark</th>
+            <th>Total</th>
+            <th>Action</th>
+
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let sm of subjectMappingLst">
+            <td>{{sm.subjectName}}</td>
+            <td>{{sm.credit}}</td>
+            <td><input type="text" class="form-control" [(ngModel)]="sm.internalMark" name="internalmark" (keyup)="onChangeEvent(sm)" #internalmark="ngModel" appOnlynumber required></td>
+            <td><input type="text" class="form-control" [(ngModel)]="sm.externalMark" name="externalmark" (keyup)="onChangeEvent(sm)" #externalmark="ngModel" appOnlynumber required></td>
+            <td><input type="text" class="form-control" [(ngModel)]="sm.total" name="totalvalue" #totalvalue="ngModel" readonly></td>
+
+            <td> <button class="btn btn-success" (click)="saveMarkEntry(sm)" >Save</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+
+    </div>
+
+  </div>
 </div>

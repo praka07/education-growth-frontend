@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CompleterData, CompleterService } from 'ng2-completer';
 import { ToastrService } from 'ngx-toastr';
+import { SubjectMapping } from 'src/app/models/subject-mapping';
 import { Subjectdetail } from 'src/app/models/subjectdetail';
 import { User } from 'src/app/models/user';
 import { EGrowthService } from 'src/app/service/e-growth.service';
@@ -17,6 +18,7 @@ export class MaryEntryFilterComponent implements OnInit {
   dataService: CompleterData;
   subjectObject = new Subjectdetail();
   searchStr: string;
+  subjectMapping: SubjectMapping[];
   semesters = [{
     'id': 1,
     'semester': 1
@@ -44,9 +46,10 @@ export class MaryEntryFilterComponent implements OnInit {
   }];
 
   constructor(private service: EGrowthService, private toastr: ToastrService, private completerService: CompleterService
-    ,private router:Router) { }
+    , private router: Router) { }
 
   ngOnInit(): void {
+    this.subjectObject.semester = '';
     this.service.getAllUsers().subscribe(res => {
       this.studentDetails = res.filter(object => {
         return object.role == 3;
@@ -62,13 +65,21 @@ export class MaryEntryFilterComponent implements OnInit {
 
   getMaryEntryList() {
     let payload: any = {};
-    let selectedStudent = this.studentDetails.find(x =>x.rollNumber === this.searchStr).autoId;
-    payload.autoId =selectedStudent;
-    payload.semester =this.subjectObject.semester;
+    let selectedStudent = this.studentDetails.find(x => x.rollNumber === this.searchStr).autoId;
+    payload.autoId = selectedStudent;
+    payload.semester = this.subjectObject.semester;
     payload.createdBy = this.service.getLoggedInuser().autoId;
     this.service.getSubjectsListbyStudent(payload).subscribe(res => {
+      console.log('-- response from sp---', res);
+      this.subjectMapping=res["#result-set-1"];
+      console.log('-- response from subjectMapping---', this.subjectMapping);
+      this.service.holdSubjectMapping(this.subjectMapping);
+      res["#result-set-1"].forEach(element => {
+        console.log('--- element---', element);
 
-      this.router.navigate(['/saff/markentry']);
+      });
+
+      this.router.navigate(['/staff/markentry']);
 
     }, error => {
       this.toastr.error('Something wrong here');

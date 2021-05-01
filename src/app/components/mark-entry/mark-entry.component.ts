@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CompleterData, CompleterService } from 'ng2-completer';
 import { ToastrService } from 'ngx-toastr';
+import { SubjectMapping } from 'src/app/models/subject-mapping';
 import { Subjectdetail } from 'src/app/models/subjectdetail';
 import { User } from 'src/app/models/user';
 import { EGrowthService } from 'src/app/service/e-growth.service';
@@ -15,7 +16,7 @@ export class MarkEntryComponent implements OnInit {
   studentDetails: User[];
   dataService: CompleterData;
   subjectObject = new Subjectdetail();
-  searchStr:string;
+  searchStr: string;
   semesters = [{
     'id': 1,
     'semester': 1
@@ -41,10 +42,31 @@ export class MarkEntryComponent implements OnInit {
     'semester': 6
 
   }];
-
+  subjectMappingLst: SubjectMapping[];
   constructor(private service: EGrowthService, private toastr: ToastrService, private completerService: CompleterService) { }
 
   ngOnInit(): void {
+    this.subjectMappingLst = this.service.getSubjectMapping();
+
+
+  }
+
+  saveMarkEntry(sm: SubjectMapping) {
+    console.log('--- save ---', sm);
+    if (typeof sm.internalMark === "undefined") {
+      this.toastr.error('internal mark is mandatory');
+
+    } else if (typeof sm.externalMark === "undefined") {
+      this.toastr.error('external mark is mandatory');
+
+    } else {
+      sm.total = + sm.internalMark + +sm.externalMark;
+
+    }
+  }
+
+  onChangeEvent(sm:SubjectMapping){
+    sm.total = + sm.internalMark + +sm.externalMark;
 
   }
 

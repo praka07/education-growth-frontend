@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Batchdetail } from '../models/batchdetail';
 import { Electivedetail } from '../models/electivedetail';
+import { SubjectMapping } from '../models/subject-mapping';
 import { Subjectdetail } from '../models/subjectdetail';
 import { User } from '../models/user';
 
@@ -18,6 +19,7 @@ export class EGrowthService {
   constructor(private http: HttpClient, private router: Router) { }
   loggedInUserDetail = new User();
   backendUrl: string = 'http://localhost:2020/';
+  subjectMappingResult:SubjectMapping[];
 
   holdUserDetails = (user: User) => {
     this.loggedInUserDetail = user;
@@ -96,5 +98,12 @@ export class EGrowthService {
 
   getSubjectsListbyStudent(payload:any){
     return this.http.post(`${this.backendUrl}subjectslistbystudent`,payload);
+  }
+  holdSubjectMapping(mappingObject:SubjectMapping[]){
+    this.subjectMappingResult=mappingObject;
+    console.log('--- mapping object--',this.subjectMappingResult);
+  }
+  getSubjectMapping(){
+    return this.subjectMappingResult;
   }
 }

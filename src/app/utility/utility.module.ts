@@ -4,17 +4,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ViewUsersComponent } from '../components/view-users/view-users.component';
 import { ChangePasswordComponent } from '../components/change-password/change-password.component';
 import { EditUserComponent } from '../components/edit-user/edit-user.component';
+import { OnlynumberDirective } from '../directives/onlynumber.directive';
 
 
 
 @NgModule({
-  declarations: [ViewUsersComponent,ChangePasswordComponent,EditUserComponent],
+  declarations: [ViewUsersComponent,ChangePasswordComponent,EditUserComponent,OnlynumberDirective],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule
 
   ],
-  exports:[ViewUsersComponent,EditUserComponent,ChangePasswordComponent,FormsModule,ReactiveFormsModule]
+  exports:[ViewUsersComponent,EditUserComponent,ChangePasswordComponent,FormsModule,ReactiveFormsModule,OnlynumberDirective]
 })
 export class UtilityModule { }

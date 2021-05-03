@@ -70,7 +70,6 @@ export class MaryEntryFilterComponent implements OnInit {
     payload.semester = this.subjectObject.semester;
     payload.createdBy = this.service.getLoggedInuser().autoId;
     this.service.getSubjectsListbyStudent(payload).subscribe(res => {
-      console.log('-- response from sp---', res);
       this.subjectMapping=res["#result-set-1"];
       console.log('-- response from subjectMapping---', this.subjectMapping);
       this.service.holdSubjectMapping(this.subjectMapping);

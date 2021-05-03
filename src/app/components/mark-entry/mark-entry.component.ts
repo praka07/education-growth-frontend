@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CompleterData, CompleterService } from 'ng2-completer';
 import { ToastrService } from 'ngx-toastr';
 import { SubjectMapping } from 'src/app/models/subject-mapping';
@@ -43,7 +44,7 @@ export class MarkEntryComponent implements OnInit {
 
   }];
   subjectMappingLst: SubjectMapping[];
-  constructor(private service: EGrowthService, private toastr: ToastrService, private completerService: CompleterService) { }
+  constructor(private service: EGrowthService, private toastr: ToastrService, private completerService: CompleterService,private router:Router) { }
 
   ngOnInit(): void {
     this.subjectMappingLst = this.service.getSubjectMapping();
@@ -51,25 +52,47 @@ export class MarkEntryComponent implements OnInit {
 
   }
 
-  saveMarkEntry(sm: SubjectMapping) {
-    console.log('--- save ---', sm);
-    if (typeof sm.internalMark === "undefined") {
-      this.toastr.error('internal mark is mandatory');
+  saveMarkEntry() {
+    console.log('----', this.subjectMappingLst);
+    let internalMarkStatus = 0;
+    let externalMarkStatus = 0;
+    this.subjectMappingLst.forEach(object => {
 
-    } else if (typeof sm.externalMark === "undefined") {
-      this.toastr.error('external mark is mandatory');
+
+
+      if (typeof object.internalMarks === "undefined" || object.internalMarks.length == 0) {
+        internalMarkStatus++;
+
+      } else if (typeof object.externalMarks === "undefined" || object.externalMarks.length == 0) {
+
+        externalMarkStatus++;
+      } else {
+
+      }
+
+    });
+    if (internalMarkStatus > 0 || externalMarkStatus > 0) {
+      this.toastr.error('external or internal mark is mandatory');
 
     } else {
-      sm.total = + sm.internalMark + +sm.externalMark;
+     this.service.markEntry(this.subjectMappingLst).subscribe(res =>{
+       this.router.navigate(['/staff/markentryfilter']);
+
+     },error =>{
+      this.toastr.error('Something wrong here');
+     })
 
     }
   }
 
-  onChangeEvent(sm:SubjectMapping){
-    sm.total = + sm.internalMark + +sm.externalMark;
+  onChangeEvent(sm: SubjectMapping) {
+    if (typeof sm.internalMarks !== "undefined" && typeof sm.externalMarks !== "undefined") {
+      sm.totalMarks = + sm.internalMarks + +sm.externalMarks;
+
+    }
+
+
 
   }
-
-
 
 }

@@ -11,4 +11,5 @@ export class User {
   active: boolean;
   rollNumber: string;
   batch:number;
+  academicYear:string;
 }

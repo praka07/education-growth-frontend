@@ -101,9 +101,12 @@ export class EGrowthService {
   }
   holdSubjectMapping(mappingObject:SubjectMapping[]){
     this.subjectMappingResult=mappingObject;
-    console.log('--- mapping object--',this.subjectMappingResult);
   }
   getSubjectMapping(){
     return this.subjectMappingResult;
+  }
+  markEntry(mappingObject:SubjectMapping[]){
+    return this.http.post(`${this.backendUrl}markentry`,mappingObject);
+
   }
 }

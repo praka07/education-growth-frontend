@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <form #reportForm="ngForm" autocomplete="off" (ngSubmit)="getReportForm()">
+
+    <div class="row">
+      <div class="col-md-5">
+        <label>Select Semester</label>
+        <div class="form-group">
+          <select class="form-control" [(ngModel)]="subjectObject.semester" name="semesterType" #semesterType="ngModel"
+            required>
+            <option value=''>Select Semester Type</option>
+            <option *ngFor="let sem of semesters" [value]="sem.id">
+              {{sem.semester}}
+            </option>
+          </select>
+          <span class="text-danger" *ngIf="semesterType.errors?.required && semesterType.touched">
+            Semester is required
+          </span>
+        </div>
+        <button class="btn btn-primary float-right ctabutton"  [disabled]="!reportForm.valid">View Report</button>
+      </div>
+    </div>
+
+
+
+  </form>
+</div>

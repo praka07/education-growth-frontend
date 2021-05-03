@@ -6,7 +6,9 @@ export class SubjectMapping {
   subjectType:string;
   credit:number;
   subjectName:string;
-  internalMark:string;
-  externalMark:string;
-  total:number
+  internalMarks:string;
+  externalMarks:string;
+  totalMarks:number;
+  createdBy:number;
+  academicYear:string;
 }

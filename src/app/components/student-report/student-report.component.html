@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered" id="studentReport">
+
+        <tbody>
+          <tr>
+            <td class="font-weight-bold">Roll Number</td>
+            <td colspan="2">{{rollNumber}}</td>
+            <td class="font-weight-bold">Name</td>
+            <td colspan="2">{{name}}</td>
+          </tr>
+          <tr>
+            <td class="font-weight-bold">Batch</td>
+            <td colspan="2">{{bacth}}</td>
+            <td class="font-weight-bold">Semester</td>
+            <td colspan="2">{{semester}}</td>
+          </tr>
+          <!-- <tr>
+            <td colspan="6" style="height: 10px;"></td>
+          </tr> -->
+          <tr>
+            <th>Subject code</th>
+            <th>Subject name</th>
+            <th>Credits</th>
+            <th>Internal mark</th>
+            <th>External mark</th>
+            <th>Total mark</th>
+          </tr>
+          <tr *ngFor="let sm of subjectMappingLst">
+            <td style="text-align: left;">{{sm.subjectCode}}</td>
+            <td>{{sm.subjectName}}</td>
+            <td>{{sm.credit}}</td>
+            <td style="text-align: left;">{{sm.internalMarks}}</td>
+            <td style="text-align:left;">{{sm.externalMarks}}</td>
+            <td style="text-align: left;">{{sm.totalMarks}}</td>
+          </tr>
+          <tr>
+            <td colspan="4"></td>
+            <td class="font-weight-bold">
+              Grand Total
+            </td>
+            <td>{{grandTotal}}</td>
+
+          </tr>
+
+        </tbody>
+      </table>
+        <button class="btn btn-success float-right" (click)= "exportReport()">Export</button>
+    </div>
+  </div>
+
+
+</div>

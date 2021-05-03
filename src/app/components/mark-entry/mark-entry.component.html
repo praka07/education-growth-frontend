@@ -1,5 +1,5 @@
 <div class="p-3 mb-5 bg-white">
-  <h3 class="mb-4">Subject Mapping</h3>
+  <h3 class="mb-4">Mark Entry</h3>
 
   <div class="row justify-content-end m-0">
     <div class="col-md-12 mt-3 p-0 mscroll">
@@ -12,7 +12,7 @@
             <th>Internal Mark</th>
             <th>External Mark</th>
             <th>Total</th>
-            <th>Action</th>
+
 
 
           </tr>
@@ -21,15 +21,15 @@
           <tr *ngFor="let sm of subjectMappingLst">
             <td>{{sm.subjectName}}</td>
             <td>{{sm.credit}}</td>
-            <td><input type="text" class="form-control" [(ngModel)]="sm.internalMark" name="internalmark" (keyup)="onChangeEvent(sm)" #internalmark="ngModel" appOnlynumber required></td>
-            <td><input type="text" class="form-control" [(ngModel)]="sm.externalMark" name="externalmark" (keyup)="onChangeEvent(sm)" #externalmark="ngModel" appOnlynumber required></td>
-            <td><input type="text" class="form-control" [(ngModel)]="sm.total" name="totalvalue" #totalvalue="ngModel" readonly></td>
+            <td><input type="text" class="form-control" [(ngModel)]="sm.internalMarks" name="internalmark" (keyup)="onChangeEvent(sm)" #internalmark="ngModel" appOnlynumber required autocomplete="off"></td>
+            <td><input type="text" class="form-control" [(ngModel)]="sm.externalMarks" name="externalmark" (keyup)="onChangeEvent(sm)" #externalmark="ngModel" appOnlynumber required autocomplete="off"></td>
+            <td><input type="text" class="form-control" [(ngModel)]="sm.totalMarks" name="totalvalue" #totalvalue="ngModel" readonly></td>
 
-            <td> <button class="btn btn-success" (click)="saveMarkEntry(sm)" >Save</button></td>
+
           </tr>
         </tbody>
       </table>
-
+      <button class="btn btn-success float-right" (click)="saveMarkEntry()" >Save</button>
 
     </div>
 

@@ -5,6 +5,7 @@ import { ViewUsersComponent } from '../components/view-users/view-users.componen
 import { ChangePasswordComponent } from '../components/change-password/change-password.component';
 import { EditUserComponent } from '../components/edit-user/edit-user.component';
 import { OnlynumberDirective } from '../directives/onlynumber.directive';
+import { AvatarModule } from 'ngx-avatar';
 
 
 
@@ -13,9 +14,10 @@ import { OnlynumberDirective } from '../directives/onlynumber.directive';
   imports: [
     CommonModule,
     FormsModule,
+    AvatarModule,
     ReactiveFormsModule
 
   ],
-  exports:[ViewUsersComponent,EditUserComponent,ChangePasswordComponent,FormsModule,ReactiveFormsModule,OnlynumberDirective]
+  exports:[ViewUsersComponent,EditUserComponent,ChangePasswordComponent,FormsModule,ReactiveFormsModule,OnlynumberDirective,AvatarModule]
 })
 export class UtilityModule { }

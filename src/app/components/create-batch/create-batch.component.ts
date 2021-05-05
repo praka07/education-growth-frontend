@@ -29,7 +29,7 @@ export class CreateBatchComponent implements OnInit {
       this.service.createBatch(requestPayLoad).subscribe(res =>{
         console.log('--- response ---',res);
         this.toastr.success("Batch created successfully !!");
-        this.navigate.navigate(['staff/home']);
+        this.navigate.navigate(['staff/homebatch']);
 
       },error =>{
         this.toastr.error('Something wrong here');

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/models/user';
+import { EGrowthService } from 'src/app/service/e-growth.service';
 
 @Component({
   selector: 'app-student',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentComponent implements OnInit {
 
-  constructor() { }
+  userDetail = new User();
+
+  constructor(private service:EGrowthService) { }
 
   ngOnInit(): void {
+    this.userDetail = this.service.getLoggedInuser();
   }
 
 }

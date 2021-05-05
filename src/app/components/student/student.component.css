@@ -21,3 +21,9 @@ h4:after {width:40px; margin: 14px 0 0; height: 2px; background-color: #005efd; 
 @media all and (max-width:767px) {
     .formholder {width:90%;}
 }
+.remove::after{
+  display: none  !important;
+}
+.dropdown-menu.dmenu.show {
+  left: -73px !important;
+}

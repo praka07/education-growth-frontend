@@ -15,8 +15,15 @@
         <a class="nav-link" routerLink="/globaladmin/createstaff"><i class="icons icon-user mr-2"></i> Create Staff
           <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/"><i class="icons icon-logout mr-2"></i>Logout</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle remove" href="#" id="avatarTransactionsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <ngx-avatar name="{{userDetail.firstName}} {{userDetail.lastName}}" class="my-avatar" bgColor="#01B7BA"
+              [round]="true" size="40"></ngx-avatar>
+              <span class="sr-only">(current)</span>
+        </a>
+        <div class="dropdown-menu dmenu" aria-labelledby="avatarTransactionsDropdown" >
+          <a class="dropdown-item" routerLink="/"><i class="icons icon-logout mr-2"></i>Logout</a>
+        </div>
       </li>
       <!--<li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -8,4 +8,5 @@ export class Subjectdetail {
   createdBy: number;
   active: boolean;
   batch:number;
+  academicYear:string;
 }

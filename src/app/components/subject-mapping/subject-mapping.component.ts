@@ -92,9 +92,8 @@ export class SubjectMappingComponent implements OnInit {
     let selectedStudent = this.studentDetails.find(x =>x.rollNumber === this.searchStr).autoId;
     requestPayload.studentId = selectedStudent;
     requestPayload.electiveType=this.selectedElectiveType;
-    requestPayload.elective=this.selectedElective;
     requestPayload.semester=this.subjectObject.semester;
-    requestPayload.subjectId=this.selectedElectiveType;
+    requestPayload.subjectId=this.selectedSubject;
     requestPayload.electiveId= this.selectedElective;
     requestPayload.createdBy= this.service.getLoggedInuser().autoId;
     console.log('--- mapping payload --',requestPayload);
